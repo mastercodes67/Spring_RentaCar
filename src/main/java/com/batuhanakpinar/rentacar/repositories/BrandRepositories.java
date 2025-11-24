@@ -10,4 +10,5 @@ public interface BrandRepositories extends JpaRepository<Brand, Integer> {
     // Çünkü JpaRepository'den miras aldığımız için;
     // save(), findAll(), findById(), delete() gibi metotlar
     // zaten cebimizde hazır!
+    boolean existsByName(String name);
 }

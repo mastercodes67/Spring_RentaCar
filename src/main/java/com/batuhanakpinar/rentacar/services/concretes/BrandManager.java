@@ -1,5 +1,6 @@
 package com.batuhanakpinar.rentacar.services.concretes;
 
+import com.batuhanakpinar.rentacar.core.utilites.exceptions.BusinessExceptions;
 import com.batuhanakpinar.rentacar.entities.Brand;
 import com.batuhanakpinar.rentacar.repositories.BrandRepositories;
 import com.batuhanakpinar.rentacar.services.abstracts.BrandService;
@@ -42,6 +43,9 @@ public class BrandManager implements BrandService {
     @Override
     public void add(CreateBrandRequest createBrandRequest) {
         // 1. Manuel Mapping: Request'i Entity'ye çeviriyoruz.
+        if (this.brandRepositories.existsByName(createBrandRequest.getName())) {
+            throw new BusinessExceptions("This name already exists!");
+        }
         Brand brand = new Brand();
         // ID set etmiyoruz, çünkü veritabanı otomatik veriyor.
         brand.setName(createBrandRequest.getName());
