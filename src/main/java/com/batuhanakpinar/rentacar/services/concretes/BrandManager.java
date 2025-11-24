@@ -5,6 +5,7 @@ import com.batuhanakpinar.rentacar.entities.Brand;
 import com.batuhanakpinar.rentacar.repositories.BrandRepositories;
 import com.batuhanakpinar.rentacar.services.abstracts.BrandService;
 import com.batuhanakpinar.rentacar.services.dtos.request.CreateBrandRequest;
+import com.batuhanakpinar.rentacar.services.dtos.request.UpdateBrandRequest;
 import com.batuhanakpinar.rentacar.services.dtos.response.GetAllBrandsResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -51,6 +52,19 @@ public class BrandManager implements BrandService {
         brand.setName(createBrandRequest.getName());
         // 2. Veritabanına yolcu ediyoruz.
         this.brandRepositories.save(brand);
+    }
+
+    @Override
+    public void update(UpdateBrandRequest updateBrandRequest) {
+        Brand brand = new Brand();
+        brand.setName(updateBrandRequest.getName());
+        brand.setId(updateBrandRequest.getId());
+        this.brandRepositories.save(brand);
+    }
+
+    @Override
+    public void delete(int id) {
+        this.brandRepositories.findById(id).ifPresent(this.brandRepositories::delete);
     }
 
 
