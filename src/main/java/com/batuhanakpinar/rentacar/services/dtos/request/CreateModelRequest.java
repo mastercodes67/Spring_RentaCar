@@ -11,16 +11,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CreateModelRequest {
-    @NotBlank
-    private String brand;
-    @Size(min = 3, max = 20)
-    private String model;
-    private int brandId; //Kullanıcıdan Id istiyoruz
 
-    public String getName() {
-        return this.getName();
-    }
-    public int getBrandId() {
-        return this.getBrandId();
-    }
+    @NotBlank // Stringler için (Boşluk olamaz)
+    @Size(min = 3, max = 20)
+    private String name;
+
+    @NotNull // Sayılar için (Boş olamaz)
+    private int brandId;
+    // DİKKAT: Burada "brand" diye bir değişken YOK! Sadece brandId var.
 }
