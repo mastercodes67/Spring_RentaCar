@@ -16,4 +16,11 @@ public class CreateModelRequest {
     @Size(min = 3, max = 20)
     private String model;
     private int brandId; //Kullanıcıdan Id istiyoruz
+
+    public String getName() {
+        return this.getName();
+    }
+    public int getBrandId() {
+        return this.getBrandId();
+    }
 }
